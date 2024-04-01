@@ -1,29 +1,28 @@
-import {describe, expect, test} from '@jest/globals';
-import {Authenticator, is_data_consistent, is_enough_data_provided} from '../src/services/Authenticator';
-import { CustomerAuthenticationData } from '../@cds-models/voicebot/typescript';
-import { AuthenticationDataServiceMock } from './AuthenticationDataServiceMock';
+import { describe, expect, test } from "@jest/globals";
+import { Authenticator, is_data_consistent, is_enough_data_provided } from "../src/services/Authenticator";
+import { CustomerAuthenticationData } from "../@cds-models/voicebot/typescript";
+import { AuthenticationDataServiceMock } from "./AuthenticationDataServiceMock";
 
+const customerAuthenticationData: CustomerAuthenticationData = {
+  geburtstag: "123",
+  iban: "iban",
+  kundenkonto: "kundenkonto1",
+  kundennummer: "kundennummer1",
+  zaehlernummer: "zaehlernummer1",
+};
 
- const customerAuthenticationData: CustomerAuthenticationData = { 
-    geburtstag: '123',
-    iban: 'iban', 
-    kundenkonto: 'kundenkonto1',
-    kundennummer: 'kundennummer1',
-    zaehlernummer: 'zaehlernummer1' 
-   };
-
-describe('test authentication', () => {
-  test('is data consistent', () => {
+describe("test authentication", () => {
+  test("is data consistent", () => {
     // arrange
     const expected = false;
 
-    const actualAuthenticationData: CustomerAuthenticationData = { 
-        geburtstag: '123',
-        iban: 'iban', 
-        kundenkonto: 'kundenkonto2',
-        kundennummer: 'kundennummer2',
-        zaehlernummer: 'zaehlernummer2' 
-       };
+    const actualAuthenticationData: CustomerAuthenticationData = {
+      geburtstag: "123",
+      iban: "iban",
+      kundenkonto: "kundenkonto2",
+      kundennummer: "kundennummer2",
+      zaehlernummer: "zaehlernummer2",
+    };
 
     // act
     const actual = is_data_consistent(customerAuthenticationData, actualAuthenticationData);
@@ -32,8 +31,7 @@ describe('test authentication', () => {
     expect(actual).toBe(expected);
   });
 
-
-  test('is enough data provided', () => {
+  test("is enough data provided", () => {
     // arrange
     const expected = true;
     const needed_pieces_of_data = 3;
@@ -45,19 +43,18 @@ describe('test authentication', () => {
     expect(actual).toBe(expected);
   });
 
-
-  test('not enough data provided', () => {
+  test("not enough data provided", () => {
     // arrange
     const expected = false;
     const needed_pieces_of_data = 3;
 
-    const missingAuthenticationData: CustomerAuthenticationData = { 
-      geburtstag: '123',
-      iban: null, 
+    const missingAuthenticationData: CustomerAuthenticationData = {
+      geburtstag: "123",
+      iban: null,
       kundenkonto: null,
-      kundennummer: 'kundennummer_1',
-      zaehlernummer: null 
-     };
+      kundennummer: "kundennummer_1",
+      zaehlernummer: null,
+    };
 
     // act
     const actual = is_enough_data_provided(missingAuthenticationData, needed_pieces_of_data);
@@ -66,28 +63,27 @@ describe('test authentication', () => {
     expect(actual).toBe(expected);
   });
 
-
-  test('should throw not enough data error', async () => {
+  test("should throw not enough data error", async () => {
     // arrange
-    const expected = `Not enough customer data provided. Please provide at least 3 informations.` ;
+    const expected = `Not enough customer data provided. Please provide at least 3 informations.`;
     const needed_pieces_of_data = 3;
-    var actual = '';
+    var actual = "";
 
-    const missingAuthenticationData: CustomerAuthenticationData = { 
-      geburtstag: '123',
-      iban: null, 
+    const missingAuthenticationData: CustomerAuthenticationData = {
+      geburtstag: "123",
+      iban: null,
       kundenkonto: null,
-      kundennummer: 'kundennummer_1',
-      zaehlernummer: null 
-     };
+      kundennummer: "kundennummer_1",
+      zaehlernummer: null,
+    };
 
-     const authenticationDataService = new AuthenticationDataServiceMock();
-     const authenticator = new Authenticator(authenticationDataService);
+    const authenticationDataService = new AuthenticationDataServiceMock();
+    const authenticator = new Authenticator(authenticationDataService);
 
     // act
-     try {
-     await authenticator.authenticate(missingAuthenticationData); }
-    catch (error) {
+    try {
+      await authenticator.authenticate(missingAuthenticationData);
+    } catch (error) {
       actual = error.message;
     }
 
@@ -95,9 +91,7 @@ describe('test authentication', () => {
     expect(actual).toBe(expected);
   });
 
-
-
-  test('data os consistent', () => {
+  test("data os consistent", () => {
     // arrange
     const expected = true;
 
@@ -108,26 +102,26 @@ describe('test authentication', () => {
     expect(actual).toBe(expected);
   });
 
-  test('data is not consistent', () => {
+  test("data is not consistent", () => {
     // arrange
     const expected = false;
 
-    const customerAuthenticationData1: CustomerAuthenticationData = { 
-      geburtstag: '123',
-      iban: 'iban', 
-      kundenkonto: 'kundenkonto1',
-      kundennummer: 'kundennummer1',
-      zaehlernummer: 'zaehlernummer1' 
-     };
+    const customerAuthenticationData1: CustomerAuthenticationData = {
+      geburtstag: "123",
+      iban: "iban",
+      kundenkonto: "kundenkonto1",
+      kundennummer: "kundennummer1",
+      zaehlernummer: "zaehlernummer1",
+    };
 
-     const customerAuthenticationData2: CustomerAuthenticationData = { 
-      geburtstag: 'IS_DIFFERENT',
-      iban: 'iban', 
-      kundenkonto: 'kundenkonto1',
-      kundennummer: 'kundennummer1',
-      zaehlernummer: 'zaehlernummer1' 
-     };
-     
+    const customerAuthenticationData2: CustomerAuthenticationData = {
+      geburtstag: "IS_DIFFERENT",
+      iban: "iban",
+      kundenkonto: "kundenkonto1",
+      kundennummer: "kundennummer1",
+      zaehlernummer: "zaehlernummer1",
+    };
+
     // act
     const actual = is_data_consistent(customerAuthenticationData1, customerAuthenticationData2);
 
@@ -135,23 +129,21 @@ describe('test authentication', () => {
     expect(actual).toBe(expected);
   });
 
-
-  test('should be authenticated', async () => {
+  test("should be authenticated", async () => {
     // arrange
     const expected = true;
 
-    const customerAuthenticationData1: CustomerAuthenticationData = { 
-      geburtstag: '123',
-      iban: 'iban', 
-      kundenkonto: 'kundenkonto1',
-      kundennummer: 'kundennummer1',
-      zaehlernummer: 'zaehlernummer1' 
-     };
+    const customerAuthenticationData1: CustomerAuthenticationData = {
+      geburtstag: "123",
+      iban: "iban",
+      kundenkonto: "kundenkonto1",
+      kundennummer: "kundennummer1",
+      zaehlernummer: "zaehlernummer1",
+    };
 
+    const authenticationDataService = new AuthenticationDataServiceMock();
+    const authenticator = new Authenticator(authenticationDataService);
 
-     const authenticationDataService = new AuthenticationDataServiceMock();
-     const authenticator = new Authenticator(authenticationDataService);
-     
     // act
     const actual = await authenticator.authenticate(customerAuthenticationData);
 
@@ -159,23 +151,21 @@ describe('test authentication', () => {
     expect(actual).toBe(expected);
   });
 
-
-  test('should not be authenticated', async () => {
+  test("should not be authenticated", async () => {
     // arrange
     const expected = false;
 
-    const customerAuthenticationData1: CustomerAuthenticationData = { 
-      geburtstag: 'SOMETHING_ELSE',
-      iban: 'iban', 
-      kundenkonto: 'kundenkonto1',
-      kundennummer: 'kundennummer1',
-      zaehlernummer: 'zaehlernummer1' 
-     };
+    const customerAuthenticationData1: CustomerAuthenticationData = {
+      geburtstag: "SOMETHING_ELSE",
+      iban: "iban",
+      kundenkonto: "kundenkonto1",
+      kundennummer: "kundennummer1",
+      zaehlernummer: "zaehlernummer1",
+    };
 
+    const authenticationDataService = new AuthenticationDataServiceMock();
+    const authenticator = new Authenticator(authenticationDataService);
 
-     const authenticationDataService = new AuthenticationDataServiceMock();
-     const authenticator = new Authenticator(authenticationDataService);
-     
     // act
     const actual = await authenticator.authenticate(customerAuthenticationData1);
 
