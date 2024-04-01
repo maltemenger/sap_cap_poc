@@ -21,6 +21,3 @@ File or Folder | Purpose
 - Open a new terminal and run `cds-ts watch` 
 
 
-## Learn More
-
-Learn more at https://cap.cloud.sap/docs/get-started/.
