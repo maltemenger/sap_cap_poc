@@ -9,3 +9,12 @@ entity CustomerAuthenticationData {
   zaehlernummer  : localized String(1111);
 }
 
+
+
+entity CustomerExistingAuthenticationData {
+  kundennummer : Boolean;
+  kundenkonto  : Boolean;
+  geburtstag  : Boolean;
+  iban : Boolean;
+  zaehlernummer  : Boolean;
+}

@@ -67,7 +67,7 @@ describe('test authentication', () => {
   });
 
 
-  test('should throw not enough data error', () => {
+  test('should throw not enough data error', async () => {
     // arrange
     const expected = `Not enough customer data provided. Please provide at least 3 informations.` ;
     const needed_pieces_of_data = 3;
@@ -86,7 +86,7 @@ describe('test authentication', () => {
 
     // act
      try {
-    authenticator.authenticate(missingAuthenticationData); }
+     await authenticator.authenticate(missingAuthenticationData); }
     catch (error) {
       actual = error.message;
     }
@@ -136,7 +136,7 @@ describe('test authentication', () => {
   });
 
 
-  test('should be authenticated', () => {
+  test('should be authenticated', async () => {
     // arrange
     const expected = true;
 
@@ -153,14 +153,14 @@ describe('test authentication', () => {
      const authenticator = new Authenticator(authenticationDataService);
      
     // act
-    const actual = authenticator.authenticate(customerAuthenticationData);
+    const actual = await authenticator.authenticate(customerAuthenticationData);
 
     // assert
     expect(actual).toBe(expected);
   });
 
 
-  test('should not be authenticated', () => {
+  test('should not be authenticated', async () => {
     // arrange
     const expected = false;
 
@@ -177,7 +177,7 @@ describe('test authentication', () => {
      const authenticator = new Authenticator(authenticationDataService);
      
     // act
-    const actual = authenticator.authenticate(customerAuthenticationData1);
+    const actual = await authenticator.authenticate(customerAuthenticationData1);
 
     // assert
     expect(actual).toBe(expected);

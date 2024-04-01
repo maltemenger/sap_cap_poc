@@ -1,18 +1,22 @@
 import { CustomerAuthenticationData } from "../../@cds-models/voicebot/typescript";
+import * as cds from '@sap/cds'
 
 export interface IAuthenticationDataService {
-    get_existing_auth_informations_for_businesspartner(kundennummer: string): CustomerAuthenticationData
-    get_authentication_data_for_businesspartner(kundennummer: string): CustomerAuthenticationData
+    async get_existing_auth_informations_for_businesspartner(kundennummer: string): Promise<CustomerAuthenticationData>
+    async get_authentication_data_for_businesspartner(kundennummer: string): Promise<CustomerAuthenticationData>
 }
-
 
 
 export class AuthenticationDataService implements IAuthenticationDataService {
     
-    get_existing_auth_informations_for_businesspartner(kundennummer: string): CustomerAuthenticationData {
-        throw new Error("Method not implemented.");
+    async get_existing_auth_informations_for_businesspartner(kundennummer: string): Promise<CustomerAuthenticationData> {
+
+        const srv = await cds.connect.to ('AuthProvider');
+        const { AuthProvider } = srv.entities;
+        return await srv.run (SELECT.from(AuthProvider));
     }
-    get_authentication_data_for_businesspartner(kundennummer: string): CustomerAuthenticationData {
+
+    async get_authentication_data_for_businesspartner(kundennummer: string): Promise<CustomerAuthenticationData> {
         throw new Error("Method not implemented.");
     }
 
