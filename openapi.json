@@ -1,0 +1,540 @@
+{
+    "openapi": "3.0.2",
+    "info": {
+        "title": "Service for namespace cds_y_auth_provider",
+        "description": "This service is located at [https://localhost/service-root/](https://localhost/service-root/)",
+        "version": "1.0.0"
+    },
+    "servers": [
+        {
+            "url": "https://localhost/service-root"
+        }
+    ],
+    "tags": [
+        {
+            "name": "AuthProvider"
+        }
+    ],
+    "paths": {
+        "/AuthProvider": {
+            "get": {
+                "summary": "Get entities from AuthProvider",
+                "tags": [
+                    "AuthProvider"
+                ],
+                "parameters": [
+                    {
+                        "$ref": "#/components/parameters/top"
+                    },
+                    {
+                        "$ref": "#/components/parameters/skip"
+                    },
+                    {
+                        "name": "$filter",
+                        "description": "Filter items by property values, see [URI Conventions (OData Version 2.0)](https://www.odata.org/documentation/odata-version-2-0/uri-conventions/)",
+                        "in": "query",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "$ref": "#/components/parameters/count"
+                    },
+                    {
+                        "name": "$orderby",
+                        "description": "Order items by property values, see [URI Conventions (OData Version 2.0)](https://www.odata.org/documentation/odata-version-2-0/uri-conventions/)",
+                        "in": "query",
+                        "explode": false,
+                        "schema": {
+                            "type": "array",
+                            "uniqueItems": true,
+                            "items": {
+                                "type": "string",
+                                "enum": [
+                                    "Geschaeftspartner",
+                                    "Geschaeftspartner desc",
+                                    "Vertragskonto",
+                                    "Vertragskonto desc",
+                                    "Geburtstag",
+                                    "Geburtstag desc",
+                                    "Vertragskonto_exists",
+                                    "Vertragskonto_exists desc",
+                                    "Birthday_exists",
+                                    "Birthday_exists desc",
+                                    "Iban_exists",
+                                    "Iban_exists desc",
+                                    "IBAN",
+                                    "IBAN desc",
+                                    "Anlage",
+                                    "Anlage desc"
+                                ]
+                            }
+                        }
+                    },
+                    {
+                        "name": "$select",
+                        "description": "Select properties to be returned, see [URI Conventions (OData Version 2.0)](https://www.odata.org/documentation/odata-version-2-0/uri-conventions/)",
+                        "in": "query",
+                        "explode": false,
+                        "schema": {
+                            "type": "array",
+                            "uniqueItems": true,
+                            "items": {
+                                "type": "string",
+                                "enum": [
+                                    "Geschaeftspartner",
+                                    "Vertragskonto",
+                                    "Geburtstag",
+                                    "Vertragskonto_exists",
+                                    "Birthday_exists",
+                                    "Iban_exists",
+                                    "IBAN",
+                                    "Anlage"
+                                ]
+                            }
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Retrieved entities",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "title": "Wrapper",
+                                    "properties": {
+                                        "d": {
+                                            "type": "object",
+                                            "title": "Collection of AuthProviderType",
+                                            "properties": {
+                                                "__count": {
+                                                    "$ref": "#/components/schemas/count"
+                                                },
+                                                "results": {
+                                                    "type": "array",
+                                                    "items": {
+                                                        "$ref": "#/components/schemas/cds_y_auth_provider.AuthProviderType"
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "4XX": {
+                        "$ref": "#/components/responses/error"
+                    }
+                }
+            }
+        },
+        "/AuthProvider(Geschaeftspartner='{Geschaeftspartner}',Vertragskonto='{Vertragskonto}')": {
+            "parameters": [
+                {
+                    "description": "key: Geschaeftspartner",
+                    "in": "path",
+                    "name": "Geschaeftspartner",
+                    "required": true,
+                    "schema": {
+                        "type": "string",
+                        "maxLength": 10
+                    }
+                },
+                {
+                    "description": "key: Vertragskonto",
+                    "in": "path",
+                    "name": "Vertragskonto",
+                    "required": true,
+                    "schema": {
+                        "type": "string",
+                        "maxLength": 12
+                    }
+                }
+            ],
+            "get": {
+                "summary": "Get entity from AuthProvider by key",
+                "tags": [
+                    "AuthProvider"
+                ],
+                "parameters": [
+                    {
+                        "name": "$select",
+                        "description": "Select properties to be returned, see [URI Conventions (OData Version 2.0)](https://www.odata.org/documentation/odata-version-2-0/uri-conventions/)",
+                        "in": "query",
+                        "explode": false,
+                        "schema": {
+                            "type": "array",
+                            "uniqueItems": true,
+                            "items": {
+                                "type": "string",
+                                "enum": [
+                                    "Geschaeftspartner",
+                                    "Vertragskonto",
+                                    "Geburtstag",
+                                    "Vertragskonto_exists",
+                                    "Birthday_exists",
+                                    "Iban_exists",
+                                    "IBAN",
+                                    "Anlage"
+                                ]
+                            }
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Retrieved entity",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "title": "AuthProviderType",
+                                    "properties": {
+                                        "d": {
+                                            "$ref": "#/components/schemas/cds_y_auth_provider.AuthProviderType"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "4XX": {
+                        "$ref": "#/components/responses/error"
+                    }
+                }
+            }
+        },
+        "/authenticate": {
+            "post": {
+                "summary": "Invoke action authenticate",
+                "tags": [
+                    "Service Operations"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "title": "YA_BUSINESSPARTNER_AUTH",
+                                    "properties": {
+                                        "d": {
+                                            "$ref": "#/components/schemas/cds_y_auth_provider.YA_BUSINESSPARTNER_AUTH"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "4XX": {
+                        "$ref": "#/components/responses/error"
+                    }
+                },
+                "requestBody": {
+                    "description": "Action parameters",
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "geburtsdatum": {
+                                        "type": "string",
+                                        "maxLength": 10,
+                                        "nullable": true
+                                    },
+                                    "businesspartner": {
+                                        "type": "string",
+                                        "maxLength": 10,
+                                        "nullable": true
+                                    },
+                                    "kundenkonto": {
+                                        "type": "string",
+                                        "maxLength": 12,
+                                        "nullable": true
+                                    },
+                                    "bankverbindung": {
+                                        "type": "string",
+                                        "maxLength": 34,
+                                        "nullable": true
+                                    },
+                                    "zaehlernummer": {
+                                        "type": "string",
+                                        "maxLength": 18,
+                                        "nullable": true
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/get_auth_infos": {
+            "post": {
+                "summary": "Invoke action get_auth_infos",
+                "tags": [
+                    "Service Operations"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "title": "YA_EXISTING_AUTH_DATA",
+                                    "properties": {
+                                        "d": {
+                                            "$ref": "#/components/schemas/cds_y_auth_provider.YA_EXISTING_AUTH_DATA"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "4XX": {
+                        "$ref": "#/components/responses/error"
+                    }
+                },
+                "requestBody": {
+                    "description": "Action parameters",
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "kundennummer": {
+                                        "type": "string",
+                                        "maxLength": 10,
+                                        "nullable": true
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/$batch": {
+            "post": {
+                "summary": "Send a group of requests",
+                "description": "Group multiple requests into a single request payload, see [Batch Processing (OData Version 2.0)](https://www.odata.org/documentation/odata-version-2-0/batch-processing/).\n\n*Please note that \"Try it out\" is not supported for this request.*",
+                "tags": [
+                    "Batch Requests"
+                ],
+                "requestBody": {
+                    "required": true,
+                    "description": "Batch request",
+                    "content": {
+                        "multipart/mixed;boundary=request-separator": {
+                            "schema": {
+                                "type": "string"
+                            },
+                            "example": "--request-separator\nContent-Type: application/http\nContent-Transfer-Encoding: binary\n\nGET AuthProvider HTTP/1.1\nAccept: application/json\n\n\n--request-separator--"
+                        }
+                    }
+                },
+                "responses": {
+                    "202": {
+                        "description": "Batch response",
+                        "content": {
+                            "multipart/mixed": {
+                                "schema": {
+                                    "type": "string"
+                                },
+                                "example": "--response-separator\nContent-Type: application/http\n\nHTTP/1.1 200 OK\nContent-Type: application/json\n\n{...}\n--response-separator--"
+                            }
+                        }
+                    },
+                    "4XX": {
+                        "$ref": "#/components/responses/error"
+                    }
+                }
+            }
+        }
+    },
+    "components": {
+        "schemas": {
+            "cds_y_auth_provider.AuthProviderType": {
+                "title": "AuthProviderType",
+                "type": "object",
+                "properties": {
+                    "Geschaeftspartner": {
+                        "type": "string",
+                        "maxLength": 10
+                    },
+                    "Vertragskonto": {
+                        "type": "string",
+                        "maxLength": 12
+                    },
+                    "Geburtstag": {
+                        "type": "string",
+                        "format": "date",
+                        "example": "2017-04-13",
+                        "nullable": true
+                    },
+                    "Vertragskonto_exists": {
+                        "type": "boolean",
+                        "nullable": true
+                    },
+                    "Birthday_exists": {
+                        "type": "boolean",
+                        "nullable": true
+                    },
+                    "Iban_exists": {
+                        "type": "boolean",
+                        "nullable": true
+                    },
+                    "IBAN": {
+                        "type": "string",
+                        "maxLength": 34,
+                        "nullable": true
+                    },
+                    "Anlage": {
+                        "type": "string",
+                        "maxLength": 10,
+                        "nullable": true
+                    }
+                }
+            },
+            "cds_y_auth_provider.YA_BUSINESSPARTNER_AUTH": {
+                "title": "YA_BUSINESSPARTNER_AUTH",
+                "type": "object",
+                "properties": {
+                    "authenticated": {
+                        "type": "string",
+                        "maxLength": 10,
+                        "nullable": true
+                    },
+                    "businesspartner": {
+                        "type": "string",
+                        "maxLength": 10,
+                        "nullable": true
+                    },
+                    "reason": {
+                        "type": "string",
+                        "maxLength": 100,
+                        "nullable": true
+                    }
+                }
+            },
+            "cds_y_auth_provider.YA_EXISTING_AUTH_DATA": {
+                "title": "YA_EXISTING_AUTH_DATA",
+                "type": "object",
+                "properties": {
+                    "bankverbindung_exists": {
+                        "type": "boolean",
+                        "nullable": true
+                    },
+                    "businesspartner_exists": {
+                        "type": "boolean",
+                        "nullable": true
+                    },
+                    "geburtstag_exists": {
+                        "type": "boolean",
+                        "nullable": true
+                    },
+                    "kundenkonto_exists": {
+                        "type": "boolean",
+                        "nullable": true
+                    },
+                    "zaehlernummer_exists": {
+                        "type": "boolean",
+                        "nullable": true
+                    }
+                }
+            },
+            "count": {
+                "type": "string",
+                "description": "The number of entities in the collection. Available when using the $inlinecount query option, see [URI Conventions (OData Version 2.0)](https://www.odata.org/documentation/odata-version-2-0/uri-conventions/)."
+            },
+            "error": {
+                "type": "object",
+                "required": [
+                    "error"
+                ],
+                "properties": {
+                    "error": {
+                        "type": "object",
+                        "required": [
+                            "code",
+                            "message"
+                        ],
+                        "properties": {
+                            "code": {
+                                "type": "string"
+                            },
+                            "message": {
+                                "type": "object",
+                                "properties": {
+                                    "lang": {
+                                        "type": "string"
+                                    },
+                                    "value": {
+                                        "type": "string"
+                                    }
+                                },
+                                "required": [
+                                    "lang",
+                                    "value"
+                                ]
+                            },
+                            "innererror": {
+                                "type": "object",
+                                "description": "The structure of this object is service-specific"
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "parameters": {
+            "top": {
+                "name": "$top",
+                "in": "query",
+                "description": "Show only the first n items, see [URI Conventions (OData Version 2.0)](https://www.odata.org/documentation/odata-version-2-0/uri-conventions/)",
+                "schema": {
+                    "type": "integer",
+                    "minimum": 0
+                },
+                "example": 50
+            },
+            "skip": {
+                "name": "$skip",
+                "in": "query",
+                "description": "Skip the first n items, see [URI Conventions (OData Version 2.0)](https://www.odata.org/documentation/odata-version-2-0/uri-conventions/)",
+                "schema": {
+                    "type": "integer",
+                    "minimum": 0
+                }
+            },
+            "count": {
+                "name": "$inlinecount",
+                "in": "query",
+                "description": "Include count of items, see [URI Conventions (OData Version 2.0)](https://www.odata.org/documentation/odata-version-2-0/uri-conventions/)",
+                "schema": {
+                    "type": "string",
+                    "enum": [
+                        "allpages",
+                        "none"
+                    ]
+                }
+            }
+        },
+        "responses": {
+            "error": {
+                "description": "Error",
+                "content": {
+                    "application/json": {
+                        "schema": {
+                            "$ref": "#/components/schemas/error"
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

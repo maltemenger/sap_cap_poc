@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Edmx Version="1.0" xmlns:edmx="http://schemas.microsoft.com/ado/2007/06/edmx" xmlns:m="http://schemas.microsoft.com/ado/2007/08/dataservices/metadata" xmlns:sap="http://www.sap.com/Protocols/SAPData">
+	<Reference Uri="http://thvas1.app.stwn:8066/sap/opu/odata/iwfnd/catalogservice;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_AGGREGATION',Version='0001',SAP__Origin='')/$value" xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx">
+		<Include Namespace="Org.OData.Aggregation.V1" Alias="Aggregation" />
+	</Reference>
+	<Reference Uri="http://thvas1.app.stwn:8066/sap/opu/odata/iwfnd/catalogservice;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_ANALYTICS',Version='0001',SAP__Origin='')/$value" xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx">
+		<Include Namespace="com.sap.vocabularies.Analytics.v1" Alias="Analytics" />
+	</Reference>
+	<Reference Uri="http://thvas1.app.stwn:8066/sap/opu/odata/iwfnd/catalogservice;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_CAPABILITIES',Version='0001',SAP__Origin='')/$value" xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx">
+		<Include Namespace="Org.OData.Capabilities.V1" Alias="Capabilities" />
+	</Reference>
+	<Reference Uri="http://thvas1.app.stwn:8066/sap/opu/odata/iwfnd/catalogservice;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_CODELIST',Version='0001',SAP__Origin='')/$value" xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx">
+		<Include Namespace="com.sap.vocabularies.CodeList.v1" Alias="SAP__CodeList" />
+	</Reference>
+	<Reference Uri="http://thvas1.app.stwn:8066/sap/opu/odata/iwfnd/catalogservice;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_COMMON',Version='0001',SAP__Origin='')/$value" xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx">
+		<Include Namespace="com.sap.vocabularies.Common.v1" Alias="Common" />
+	</Reference>
+	<Reference Uri="http://thvas1.app.stwn:8066/sap/opu/odata/iwfnd/catalogservice;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_COMMUNICATION',Version='0001',SAP__Origin='')/$value" xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx">
+		<Include Namespace="com.sap.vocabularies.Communication.v1" Alias="Communication" />
+	</Reference>
+	<Reference Uri="http://thvas1.app.stwn:8066/sap/opu/odata/iwfnd/catalogservice;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_MEASURES',Version='0001',SAP__Origin='')/$value" xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx">
+		<Include Namespace="Org.OData.Measures.V1" Alias="Measures" />
+	</Reference>
+	<Reference Uri="http://thvas1.app.stwn:8066/sap/opu/odata/iwfnd/catalogservice;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_PERSONALDATA',Version='0001',SAP__Origin='')/$value" xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx">
+		<Include Namespace="com.sap.vocabularies.PersonalData.v1" Alias="PersonalData" />
+	</Reference>
+	<Reference Uri="http://thvas1.app.stwn:8066/sap/opu/odata/iwfnd/catalogservice;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_UI',Version='0001',SAP__Origin='')/$value" xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx">
+		<Include Namespace="com.sap.vocabularies.UI.v1" Alias="UI" />
+	</Reference>
+	<Reference Uri="http://thvas1.app.stwn:8066/sap/opu/odata/iwfnd/catalogservice;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_VALIDATION',Version='0001',SAP__Origin='')/$value" xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx">
+		<Include Namespace="Org.OData.Validation.V1" Alias="Validation" />
+	</Reference>
+	<DataServices m:DataServiceVersion="2.0">
+		<Schema Namespace="cds_y_auth_provider" xml:lang="de" sap:schema-version="1" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
+			<EntityType Name="AuthProviderType" sap:label="Consumption View für Auth Provider" sap:content-version="1">
+				<Key>
+					<PropertyRef Name="Geschaeftspartner" />
+					<PropertyRef Name="Vertragskonto" />
+				</Key>
+				<Property Name="Geschaeftspartner" Type="Edm.String" Nullable="false" MaxLength="10" sap:display-format="UpperCase" sap:label="Geschäftspartner" sap:quickinfo="Geschäftspartnernummer" sap:creatable="false" sap:updatable="false" />
+				<Property Name="Vertragskonto" Type="Edm.String" Nullable="false" MaxLength="12" sap:display-format="UpperCase" sap:label="Vertragskonto" sap:quickinfo="Vertragskontonummer" sap:creatable="false" sap:updatable="false" />
+				<Property Name="Geburtstag" Type="Edm.DateTime" Precision="0" sap:display-format="Date" sap:label="Geburtsdatum" sap:quickinfo="Geburtsdatum des Geschäftspartners" />
+				<Property Name="Vertragskonto_exists" Type="Edm.Boolean" sap:label="Wahrheitswert" sap:quickinfo="Wahrheitswert: wahr/falsch" />
+				<Property Name="Birthday_exists" Type="Edm.Boolean" sap:label="Wahrheitswert" sap:quickinfo="Wahrheitswert: wahr/falsch" />
+				<Property Name="Iban_exists" Type="Edm.Boolean" sap:label="Wahrheitswert" sap:quickinfo="Wahrheitswert: wahr/falsch" />
+				<Property Name="IBAN" Type="Edm.String" MaxLength="34" sap:display-format="UpperCase" sap:label="IBAN" sap:quickinfo="IBAN (International Bank Account Number)" />
+				<Property Name="Anlage" Type="Edm.String" MaxLength="10" sap:display-format="UpperCase" sap:label="Anlage" />
+			</EntityType>
+			<ComplexType Name="YA_BUSINESSPARTNER_AUTH">
+				<Property Name="authenticated" Type="Edm.String" MaxLength="10" />
+				<Property Name="businesspartner" Type="Edm.String" MaxLength="10" sap:label="Geschäftspartner" sap:quickinfo="Geschäftspartnernummer" />
+				<Property Name="reason" Type="Edm.String" MaxLength="100" />
+			</ComplexType>
+			<ComplexType Name="YA_EXISTING_AUTH_DATA">
+				<Property Name="bankverbindung_exists" Type="Edm.Boolean" sap:label="Wahrheitswert" sap:quickinfo="Wahrheitswert: wahr/falsch" />
+				<Property Name="businesspartner_exists" Type="Edm.Boolean" sap:label="Wahrheitswert" sap:quickinfo="Wahrheitswert: wahr/falsch" />
+				<Property Name="geburtstag_exists" Type="Edm.Boolean" sap:label="Wahrheitswert" sap:quickinfo="Wahrheitswert: wahr/falsch" />
+				<Property Name="kundenkonto_exists" Type="Edm.Boolean" sap:label="Wahrheitswert" sap:quickinfo="Wahrheitswert: wahr/falsch" />
+				<Property Name="zaehlernummer_exists" Type="Edm.Boolean" sap:label="Wahrheitswert" sap:quickinfo="Wahrheitswert: wahr/falsch" />
+			</ComplexType>
+			<EntityContainer Name="cds_y_auth_provider_Entities" m:IsDefaultEntityContainer="true" sap:message-scope-supported="true" sap:supported-formats="atom json xlsx">
+				<EntitySet Name="AuthProvider" EntityType="cds_y_auth_provider.AuthProviderType" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1" />
+				<FunctionImport Name="authenticate" ReturnType="cds_y_auth_provider.YA_BUSINESSPARTNER_AUTH" m:HttpMethod="POST">
+					<Parameter Name="geburtsdatum" Type="Edm.String" Mode="In" MaxLength="10" Nullable="true" />
+					<Parameter Name="businesspartner" Type="Edm.String" Mode="In" MaxLength="10" Nullable="true" sap:label="Geschäftspartner" />
+					<Parameter Name="kundenkonto" Type="Edm.String" Mode="In" MaxLength="12" Nullable="true" sap:label="Vertragskonto" />
+					<Parameter Name="bankverbindung" Type="Edm.String" Mode="In" MaxLength="34" Nullable="true" sap:label="IBAN" />
+					<Parameter Name="zaehlernummer" Type="Edm.String" Mode="In" MaxLength="18" Nullable="true" sap:label="Serialnummer" />
+				</FunctionImport>
+				<FunctionImport Name="get_auth_infos" ReturnType="cds_y_auth_provider.YA_EXISTING_AUTH_DATA" m:HttpMethod="POST">
+					<Parameter Name="kundennummer" Type="Edm.String" Mode="In" MaxLength="10" Nullable="true" sap:label="Geschäftspartner" />
+				</FunctionImport>
+			</EntityContainer>
+			<Annotation Term="Core.SchemaVersion" String="1.0.0" xmlns="http://docs.oasis-open.org/odata/ns/edm" />
+			<Annotations Target="cds_y_auth_provider.cds_y_auth_provider_Entities" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+				<Annotation Term="Common.ApplyMultiUnitBehaviorForSortingAndFiltering" Bool="true" />
+			</Annotations>
+			<Annotations Target="cds_y_auth_provider.cds_y_auth_provider_Entities/AuthProvider" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+				<Annotation Term="SAP__core.OptimisticConcurrency">
+					<Collection />
+				</Annotation>
+			</Annotations>
+			<Annotations Target="cds_y_auth_provider.cds_y_auth_provider_Entities" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+				<Annotation Term="Org.OData.Capabilities.V1.BatchSupport">
+					<Record Type="Org.OData.Capabilities.V1.BatchSupportType">
+						<PropertyValue Property="ReferencesAcrossChangeSetsSupported" Bool="true" />
+					</Record>
+				</Annotation>
+			</Annotations>
+			<link rel="self" href="http://thvas1.app.stwn:8066/sap/opu/odata/sap/YAPI_AUTHENTICATOR/$metadata" xmlns:atom="http://www.w3.org/2005/Atom" />
+			<link rel="latest-version" href="http://thvas1.app.stwn:8066/sap/opu/odata/sap/YAPI_AUTHENTICATOR/$metadata" xmlns:atom="http://www.w3.org/2005/Atom" />
+		</Schema>
+	</DataServices>
+</Edmx>

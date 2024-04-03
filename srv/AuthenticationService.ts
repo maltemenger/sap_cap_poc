@@ -1,6 +1,8 @@
 import * as cds from "@sap/cds";
 import { Authenticator } from "../src/services/Authenticator";
 import { AuthenticationDataServiceMock } from "../test/AuthenticationDataServiceMock";
+import { AuthenticationDataService } from "../src/services/AuthenticationDataService";
+
 
 module.exports = async function AuthenticationService() {
   this.after("READ", "CustomerAuthenticationData", (each: { geburtstag: string }) => {
@@ -10,7 +12,26 @@ module.exports = async function AuthenticationService() {
   this.on("authenticate", async (request: cds.Request) => {
     const customerAuthData = request.data.customerData;
 
-    const authenticationDataService = new AuthenticationDataServiceMock();
+    const authenticationDataService = new AuthenticationDataService();
+    const authenticator = new Authenticator(authenticationDataService);
+
+    try {
+      return authenticator.authenticate(customerAuthData);
+    } catch (validation_error) {
+      const error = request.error({
+        code: "499",
+        message: validation_error.message,
+      });
+      request.reject(error);
+    }
+  });
+
+
+
+  this.on("get_auth_infos", async (request: cds.Request) => {
+    const customerAuthData = request.data.customerData;
+
+    const authenticationDataService = new AuthenticationDataService();
     const authenticator = new Authenticator(authenticationDataService);
 
     try {

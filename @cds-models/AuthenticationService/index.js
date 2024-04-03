@@ -9,4 +9,5 @@ module.exports.CustomerExistingAuthenticationData_ = csn.CustomerExistingAuthent
 // events
 // actions
 module.exports.authenticate = 'authenticate'
+module.exports.get_auth_infos = 'get_auth_infos'
 // enums

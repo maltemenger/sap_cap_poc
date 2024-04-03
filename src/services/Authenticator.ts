@@ -11,6 +11,7 @@ export class Authenticator {
 
   async authenticate(customerAuthenticationData: CustomerAuthenticationData): Promise<Boolean> {
     const has_enough_data = is_enough_data_provided(customerAuthenticationData, this.required_auth_infos);
+
     if (!has_enough_data) {
       throw_not_enough_data_error(this.required_auth_infos);
     }

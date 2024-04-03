@@ -35,3 +35,5 @@ Object.defineProperty(CustomerExistingAuthenticationData_, 'name', { value: 'Aut
 
 // function
 export declare const authenticate: { (customerData: CustomerAuthenticationData | null): boolean | null, __parameters: {customerData: CustomerAuthenticationData | null}, __returns: boolean | null };
+// function
+export declare const get_auth_infos: { (businesspartner: string | null): {} | null, __parameters: {businesspartner: string | null}, __returns: {} | null };
