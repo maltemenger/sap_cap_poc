@@ -1,5 +1,5 @@
 import { CustomerAuthenticationData } from "../@cds-models/voicebot/typescript";
-import { IAuthenticationDataService } from "../src/services/AuthenticationDataService";
+import { IAuthenticationDataService } from "../srv/authentication/AuthenticationDataService";
 
 export class AuthenticationDataServiceMock implements IAuthenticationDataService {
   async get_authentication_data_for_businesspartner(kundennummer: string): Promise<CustomerAuthenticationData> {

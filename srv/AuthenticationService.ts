@@ -1,7 +1,7 @@
 import * as cds from "@sap/cds";
-import { Authenticator } from "../src/services/Authenticator";
+import { Authenticator } from "./authentication/Authenticator";
 import { AuthenticationDataServiceMock } from "../test/AuthenticationDataServiceMock";
-import { AuthenticationDataService } from "../src/services/AuthenticationDataService";
+import { AuthenticationDataService } from "./authentication/AuthenticationDataService";
 
 
 module.exports = async function AuthenticationService() {
@@ -12,7 +12,7 @@ module.exports = async function AuthenticationService() {
   this.on("authenticate", async (request: cds.Request) => {
     const customerAuthData = request.data.customerData;
 
-    const authenticationDataService = new AuthenticationDataService();
+    const authenticationDataService = new AuthenticationDataServiceMock();
     const authenticator = new Authenticator(authenticationDataService);
 
     try {
@@ -29,13 +29,14 @@ module.exports = async function AuthenticationService() {
 
 
   this.on("get_auth_infos", async (request: cds.Request) => {
+
     const customerAuthData = request.data.customerData;
 
-    const authenticationDataService = new AuthenticationDataService();
+    const authenticationDataService = new AuthenticationDataServiceMock();
     const authenticator = new Authenticator(authenticationDataService);
 
     try {
-      return authenticator.authenticate(customerAuthData);
+       authenticator.authenticate(customerAuthData);
     } catch (validation_error) {
       const error = request.error({
         code: "499",
@@ -43,5 +44,7 @@ module.exports = async function AuthenticationService() {
       });
       request.reject(error);
     }
+
+    return true;
   });
 };
